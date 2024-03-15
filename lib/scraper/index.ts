@@ -67,7 +67,9 @@ export async function scrapeAmazonProduct(url: string) {
     const ratings = ratingsText[0].replace(",", "");
     console.log(Number(ratings), ratingsText);
 
-    const startsCount = $("#acrPopover > span.a-declarative > a > span").text();
+    const startsCount = $(
+      "#acrPopover > span.a-declarative > a > span.a-size-base"
+    ).text();
 
     const description = extractDescription($);
 
