@@ -82,7 +82,8 @@ export async function generateEmailBody(
 const transporter = nodemailer.createTransport({
   pool: true,
   service: "hotmail",
-  port: 2525,
+  port: Number(process.env.MAILER_PORT),
+  secure: false,
   auth: {
     user: process.env.MAILER_EMAIL,
     pass: process.env.MAILER_PASSWORD,
@@ -105,6 +106,9 @@ export const sendEmail = async (
     if (error) return console.log(error);
     console.log("Email sent: ", info);
 
-    return { error, info, res: "email sent" };
+    return new Promise((resolve) =>
+      setTimeout(() => resolve("Resolved value"), 1000)
+    );
+    // { error, info, res: "email sent" }
   });
 };
